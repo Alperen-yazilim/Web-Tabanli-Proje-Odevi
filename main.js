@@ -332,11 +332,11 @@ function gameLoop() {
         ctx.fillStyle = 'gold'; // Altın sarısı yazı
         ctx.font = 'bold 80px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText("ZAFER SENİN!", cvs.width / 2, cvs.height / 2);
+        ctx.fillText("ZAFER SENIN!", cvs.width / 2, cvs.height / 2);
         
         ctx.fillStyle = 'white';
         ctx.font = '24px Arial';
-        ctx.fillText("Efsanevi Altın Ejderha'yı yendin! Skor: " + score, cvs.width / 2, cvs.height / 2 + 60);
+        ctx.fillText("Efsanevi Altin Ejderha'yi yendin! Skor: " + score, cvs.width / 2, cvs.height / 2 + 60);
         return; // Oyunu durdur
     }
     // Sonraki frame için gameLoop'u tekrar çağır
