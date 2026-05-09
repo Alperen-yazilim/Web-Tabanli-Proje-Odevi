@@ -131,13 +131,38 @@ function gameLoop() {
         // Canvas'ı eşit şeritlere böl
         const laneWidth = 100; // Her şeridin genişliği
         const numLanes = Math.floor(cvs.width / laneWidth); // Toplam şerit sayısı
-        
-        // Rastgele bir şerit seç
-        const randomLane = Math.floor(Math.random() * numLanes); 
-        const startX = randomLane * laneWidth; // Seçili şeridin x konumu
-        
-        // Yeni zar oluştur ve canvas üstünden başlat
-        dices.push(new Dice(startX, -150)); 
+        //Hangi şeritlerin (sütunların) müsait olduğunu bul
+        let availableLanes = [];
+        for (let i = 0; i < numLanes; i++) {
+            let laneX = i * laneWidth;
+            let isLaneFull = false;
+
+            // Bu şeritteki mevcut zarları kontrol et
+            for (let j = 0; j < dices.length; j++) {
+                // Eğer bu şeritte bir zar varsa ve ekranın çok üstündeyse (y < 100)
+                // Bu, şeridin ağzına kadar dolu olduğu anlamına gelir.
+                if (dices[j].x === laneX && dices[j].y < 100) {
+                    isLaneFull = true;
+                    break; // Şerit dolu, diğer zarlara bakmaya gerek yok
+                }
+            }
+
+            // Şerit dolu değilse (müsaitse), listeye ekle
+            if (!isLaneFull) {
+                availableLanes.push(i);
+            }
+        }
+
+        // Sadece müsait olan şeritlerden rastgele birini seç
+        if (availableLanes.length > 0) {
+            const randomIndex = Math.floor(Math.random() * availableLanes.length);
+            const selectedLane = availableLanes[randomIndex]; 
+            const startX = selectedLane * laneWidth; 
+            
+            // Yeni zar oluştur ve canvas üstünden başlat
+            dices.push(new Dice(startX, -150)); 
+        }
+
         diceSpawnTimer = 0; // Sayaç sıfırla
     }
 
