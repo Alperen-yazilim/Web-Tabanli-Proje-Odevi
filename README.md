@@ -13,7 +13,7 @@ Skor 2000'e ulaştığında devasa **Altın Ejderha (Boss)** sahneye iner. Boss'
 ## ⌨️ Kontroller
 * **A / D:** Sağa ve Sola Yürüme
 * **W:** Zıplama
-* **Space (Boşluk):** Kılıç Savurma (Yakın Dövüş - 100 Hasar)
+* **Space (Boşluk):** Kılıç Savurma (Yakın Dövüş - 80 Hasar)
 * **Mouse Sol Tık:** Shuriken Fırlatma (Uzak Dövüş - Sadece içinde cephane/sayı olan bir zarın üzerindeyken yapılabilir!)
 
 ## 🖼️ Ekran Görüntüleri
