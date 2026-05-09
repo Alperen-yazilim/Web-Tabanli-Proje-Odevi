@@ -3,7 +3,7 @@
 Bu proje, Web Tabanlı Programlama dersi kapsamında HTML5, CSS ve JavaScript (Canvas API) kullanılarak geliştirilmiş bir hayatta kalma (survival) ve aksiyon oyunudur. 
 
 ## Esinleinilen Oyun Linki : (https://jamadoo-games.itch.io/diemunition)
-
+## Oyunun Linki : (https://alperen-yazilim.github.io/Web-Tabanli-Proje-Odevi/)
 
 ## 🎮 Oyunun Amacı ve Zorluk (Challenge)
 Oyuncunun amacı, gökyüzünden sürekli yağan zarların altında ezilmekten kurtulmak ve bir yandan da akın akın gelen ejderhaları yok ederek hayatta kalmaktır. Gökten düşen zarlar sadece bir engel değil, aynı zamanda shuriken fırlatabilmek için üzerine çıkılması gereken cephane platformlarıdır. 
