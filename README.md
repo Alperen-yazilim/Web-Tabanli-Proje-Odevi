@@ -2,7 +2,7 @@
 
 Bu proje, Web Tabanlı Programlama dersi kapsamında HTML5, CSS ve JavaScript (Canvas API) kullanılarak geliştirilmiş bir hayatta kalma (survival) ve aksiyon oyunudur. 
 
-## Esinleinilen Oyun Linki : (https://jamadoo-games.itch.io/diemunition)
+## Esinlenilen Oyun Linki : (https://jamadoo-games.itch.io/diemunition)
 ## Oyunun Linki : (https://alperen-yazilim.github.io/Web-Tabanli-Proje-Odevi/)
 
 ## 🎮 Oyunun Amacı ve Zorluk (Challenge)
