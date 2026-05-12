@@ -29,8 +29,11 @@ let spawnTimer = 0; // Düşman doğma zamanı sayacı
 let spawnInterval = 240; // Düşmanlar arasında kaç frame olacak
 let maxEnemies= 3; // Aynı anda maximum kaç düşman olabilir
 let gameOver = false; // Oyun bitti mi diye kontrol etmek için
-let bossSpawned=false;
-let gameWon=false;
+let bossSpawned=false; // Boss doğup doğmadığı kontrol etmek için
+let gameWon=false; // oyunu kazanıp kazanılmadığını kontrol etmkek için
+let fps=60; // 60 fpse sabitlemek için
+let fpsInterval = 1000/fps; // fpsi saniye cinsinden hesaplama
+let then= Date.now();
 
 // Müzik bittiğinde loop yap - müziği tekrar baştan başlat
 Music.addEventListener('ended', function() {
@@ -114,6 +117,19 @@ canvas.addEventListener('mousedown', function(e) {
 
 // Ana oyun döngüsü - her frame'de çalışır
 function gameLoop() {
+    // Döngüyü hemen tekrar çağır (Tarayıcının ritmini bozmamak için en üstte kalmalı)
+    let animationId = requestAnimationFrame(gameLoop);
+
+    // Şu anki zamanı al
+    let now = Date.now();
+    let elapsed = now - then;
+
+    // Eğer son çizimden bu yana yeterli zaman (16.6ms) GEÇTİYSE kodları çalıştır
+    if (elapsed > fpsInterval) {
+        
+        // Bir sonraki kare için zamanlayıcıyı ayarla (Hassas kalibrasyon)
+        then = now - (elapsed % fpsInterval);
+    
     // Ekranı temizle - eski çizimi sil
     ctx.clearRect(0, 0, cvs.width, cvs.height);
     
@@ -285,7 +301,7 @@ function gameLoop() {
     drawHealthBar(ctx);
     
     // Oyuncunun sağlığı 0 veya altına düşerse oyun bitmiş
-    if (player.hp <= 0) {
+    if (player.hp <= 0 && !gameOver) {
         gameOver = true;
         Music.pause(); // Müziği durdur
         sfxGameover.currentTime=0; // Ses baştan başla
@@ -313,7 +329,7 @@ function gameLoop() {
         ctx.fillStyle = 'lightgray';
         ctx.font = '20px Arial';
         ctx.fillText("Tekrar oynamak icin sayfayi yenile (F5)", cvs.width / 2, cvs.height / 2 + 90);
-        
+        cancelAnimationFrame(animationId);
         return; // Oyun döngüsünü durdur
     }
     
@@ -346,7 +362,7 @@ function gameLoop() {
         bossSpawned=true;
         
     }
-    if (bossSpawned && enemies.length === 0 && !gameOver) {
+    if (!gameWon && !gameOver && bossSpawned && enemies.length === 0 && !gameOver) {
         gameWon = true;
     }
 
@@ -362,10 +378,10 @@ function gameLoop() {
         ctx.fillStyle = 'white';
         ctx.font = '24px Arial';
         ctx.fillText("Efsanevi Altin Ejderha'yi yendin! Skor: " + score, cvs.width / 2, cvs.height / 2 + 60);
+        cancelAnimationFrame(animationId); // DÖNGÜYÜ TAMAMEN DURDUR
         return; // Oyunu durdur
     }
-    // Sonraki frame için gameLoop'u tekrar çağır
-    requestAnimationFrame(gameLoop);
+    }
 }
 
 // Ekranın sol üst köşeye sağlık barı ve skor çiz
